@@ -1,26 +1,24 @@
 import { Paddle } from "./paddle.js";
 import { Ball } from "./ball.js";
-import { GAME_WIDTH, GAME_HEIGHT } from "./constants.js";
+import { GAME_WIDTH, GAME_HEIGHT, BALL_SPEED, PADDLE_SPEED, BALL_RADIUS, PADDLE_WIDTH, PADDLE_HEIGHT } from "./constants.js";
 
-const gameContainer = document.getElementById('gameContainer');
 const gameCanvas = document.getElementById('gameCanvas');
 const ctx = gameCanvas.getContext('2d');
 const scoreText = document.getElementById('scoreText');
-const resetButton = document.getElementById('resetButton');
 
 const gameWidth = GAME_WIDTH;
 const gameHeight = GAME_HEIGHT;
 
-let paddle1 = new Paddle(ctx,0,0,25,100,0,50,"lightblue");
-let paddle2 = new Paddle(ctx,gameWidth-25,gameHeight-100,25,100,0,50,"red");
+let paddle1 = new Paddle(ctx,0,0,PADDLE_WIDTH,PADDLE_HEIGHT,PADDLE_SPEED,"lightblue");
+let paddle2 = new Paddle(ctx,gameWidth-PADDLE_WIDTH,gameHeight-PADDLE_HEIGHT,PADDLE_WIDTH,PADDLE_HEIGHT,PADDLE_SPEED,"red");
 
-let ball = new Ball(ctx,12.5,1,0,0,"yellow","black");
+let ball = new Ball(ctx,0,0,"yellow","black");
 
 let gameInMotion = false;
 
 function changeDirection(event){
     const {key,keyCode} = event;
-    console.log(event.keyCode);
+    // console.log(event.keyCode);
     if(key === "ArrowUp"){
         if(paddle2.y > 0){
             paddle2.moveUp();
@@ -57,17 +55,15 @@ function checkCollisions(){
     }
     if(ball.x <= 0 + ball.radius){
         paddle2.score += 1;
-        // ball.startInitialMovement();
         updateScore();
-        ball = new Ball(ctx,12.5,1,0,0,"yellow","black");
+        ball = new Ball(ctx,0,0,"yellow","black");
         gameInMotion = false;
         return;
     }
     if(ball.x >= gameWidth - ball.radius){
         paddle1.score += 1;
         updateScore();
-        // ball.startInitialMovement();
-        ball = new Ball(ctx,12.5,1,0,0,"yellow","black");
+        ball = new Ball(ctx,0,0,"yellow","black");
         gameInMotion = false;
         return;
     }
@@ -94,10 +90,8 @@ function updateScore(){
 
 
 window.addEventListener("keydown", changeDirection);
-// resetButton.addEventListener("click",resetGame);
 
 function gameLoop(){
-    console.log("loop");
     ctx.clearRect(0,0,gameWidth,gameHeight);
     paddle1.draw();
     paddle2.draw();

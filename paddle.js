@@ -1,11 +1,11 @@
 export class Paddle{
-    constructor(ctx,x, y, width, height, score,speed,color,borderColor) {
+    constructor(ctx,x, y, width, height,speed,color,borderColor) {
         this.ctx = ctx
         this.x = x;
         this.y = y;
         this.width = width;
         this.height = height;
-        this.score = score
+        this.score = 0
         this.speed = speed
         this.color = color
         this.borderColor = borderColor

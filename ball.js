@@ -1,12 +1,12 @@
-import { GAME_WIDTH, GAME_HEIGHT } from "./constants.js";
+import { GAME_WIDTH, GAME_HEIGHT,BALL_RADIUS,BALL_SPEED } from "./constants.js";
 
 export class Ball{
-    constructor(ctx,radius,speed,xDirection,yDirection,color,borderColor){
+    constructor(ctx,xDirection,yDirection,color,borderColor){
         this.ctx = ctx;
         this.x = GAME_WIDTH/2;
         this.y = GAME_HEIGHT/2;
-        this.radius = radius;
-        this.speed = speed;
+        this.radius = BALL_RADIUS;
+        this.speed = BALL_SPEED;
         this.xDirection = xDirection;
         this.yDirection = yDirection;
         this.color = color;
