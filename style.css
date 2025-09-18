@@ -1,0 +1,11 @@
+#gameContainer{
+    text-align: center;
+}
+#gameCanvas{
+    border:3px solid black;
+    background-color: forestgreen;
+}
+#scoreText{
+    font-family: "consolas",monospace;
+    font-size: 100px;;
+}
